@@ -6,8 +6,14 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
+
+import com.dkc.entities.Entity;
+import com.dkc.entities.Player;
+import com.dkc.graphics.Spritesheet;
 
 public class Game extends Canvas implements Runnable {
 	
@@ -18,10 +24,18 @@ public class Game extends Canvas implements Runnable {
 	private boolean isRunning = true;
 	private BufferedImage image;
 	
+	public Spritesheet spritesheet;
+	public List<Entity> entities;
+	public Player player;
+	
 	public Game() {
 		setPreferredSize(new Dimension(WIDTH*SCALE, HEIGHT*SCALE));
 		init_frame();
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+		spritesheet = new Spritesheet("/spritesheet.png");
+		entities = new ArrayList<Entity>();
+		player = new Player(0, 0, 16, 16, spritesheet.getSprite(32, 0, 16, 16));
+		entities.add(player);
 	}
 	
 	public void init_frame() {
@@ -55,7 +69,10 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	public void tick() {
-		
+		for(int i = 0; i < entities.size(); i++) {
+			Entity e = entities.get(i);
+			e.tick();
+		}
 	}
 	
 	public void render() {
@@ -68,6 +85,11 @@ public class Game extends Canvas implements Runnable {
 		Graphics g = image.getGraphics();
 		g.setColor(new Color(0, 0, 0));
 		g.fillRect(0, 0, WIDTH, HEIGHT);
+		
+		for(int i = 0; i < entities.size(); i++) {
+			Entity e = entities.get(i);
+			e.render(g);
+		}
 		
 		g.dispose();
 		g = bs.getDrawGraphics();
