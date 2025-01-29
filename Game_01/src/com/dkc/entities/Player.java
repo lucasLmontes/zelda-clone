@@ -9,7 +9,7 @@ public class Player extends Entity{
 	public boolean right, left, up, down;
 	
 	private int right_dir = 0, left_dir = 1;
-	private int dir = right_dir;
+	private int dir = left_dir;
 	private int frames = 0, maxFrames = 15, index = 0, maxIndex = 2;
 	private boolean moved;
 	

@@ -3,10 +3,17 @@ package com.dkc.entities;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import com.dkc.main.Game;
+
 public class Entity {
 	protected int x, y;
 	private int width, height;
 	private BufferedImage sprite;
+	
+	public static BufferedImage LIFE_PACK_EN = Game.spritesheet.getSprite(5*16, 0, 16, 16);
+	public static BufferedImage WEAPON_EN = Game.spritesheet.getSprite(6*16, 0, 16, 16);
+	public static BufferedImage BULLET_EN = Game.spritesheet.getSprite(5*16, 16, 16, 16);
+	public static BufferedImage ENEMY_EN = Game.spritesheet.getSprite(6*16, 16, 16, 16);
 
 	public Entity(int x, int y, int width, int height, BufferedImage sprite) {
 		this.x = x;
