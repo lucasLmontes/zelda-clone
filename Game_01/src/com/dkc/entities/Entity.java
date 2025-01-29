@@ -53,6 +53,6 @@ public class Entity {
 	}
 	
 	public void render(Graphics g) {
-		g.drawImage(sprite, this.getX(), this.getY(), width, height, null);
+		g.drawImage(sprite, this.getX(), this.getY(), this.getWidth(), this.getHeight(), null);
 	}
 }

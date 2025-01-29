@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import com.dkc.entities.Entity;
 import com.dkc.entities.Player;
 import com.dkc.graphics.Spritesheet;
+import com.dkc.world.World;
 
 public class Game extends Canvas implements Runnable, KeyListener {
 	
@@ -30,10 +31,13 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public List<Entity> entities;
 	public Player player;
 	
+	public static World world;
+	
 	public Game() {
 		addKeyListener(this);
 		setPreferredSize(new Dimension(WIDTH*SCALE, HEIGHT*SCALE));
 		init_frame();
+		world = new World("/map.png");
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		spritesheet = new Spritesheet("/spritesheet.png");
 		entities = new ArrayList<Entity>();
@@ -86,7 +90,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		}
 		
 		Graphics g = image.getGraphics();
-		g.setColor(new Color(0, 255, 0));
+		g.setColor(new Color(0, 0, 0));
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
 		for(int i = 0; i < entities.size(); i++) {
