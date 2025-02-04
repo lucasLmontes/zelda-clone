@@ -13,6 +13,7 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
+import com.dkc.entities.Enemy;
 import com.dkc.entities.Entity;
 import com.dkc.entities.Player;
 import com.dkc.graphics.Spritesheet;
@@ -30,6 +31,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public static Spritesheet spritesheet;
 	public static List<Entity> entities;
 	public static Player player;
+	public static List<Enemy> enemies;
 	
 	public static World world;
 	
@@ -41,6 +43,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		entities = new ArrayList<Entity>();
 		spritesheet = new Spritesheet("/spritesheet.png");
 		player = new Player(0, 0, 16, 16, spritesheet.getSprite(32, 0, 16, 16));
+		enemies = new ArrayList<Enemy>();
 		entities.add(player);
 		world = new World("/map.png");
 	}
