@@ -113,6 +113,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		double delta = 0;
 		int frames = 0;
 		long timer = System.currentTimeMillis();
+		requestFocus(); //cria um 'foco' na run do jogo. Dessa forma, não preciso clicar na janela para realizar qualquer comando
 		while(isRunning) {
 			long now = System.nanoTime();
 			delta += (now - lastTime)/ns;

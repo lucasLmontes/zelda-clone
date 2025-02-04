@@ -15,7 +15,7 @@ public class Player extends Entity{
 	private int frames = 0, maxFrames = 15, index = 0, maxIndex = 2;
 	private boolean moved;
 	
-	public double spd = 1.4;
+	public double spd = 1.7;
 	public BufferedImage[] rightPlayer, leftPlayer;
 
 	public Player(int x, int y, int width, int height, BufferedImage sprite) {
