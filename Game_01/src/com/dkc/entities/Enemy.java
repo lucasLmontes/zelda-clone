@@ -13,9 +13,15 @@ public class Enemy extends Entity {
 	
 	private double spd = 1;
 	private int maskx = 3, masky = 5, maskw = 10, maskh = 10;
+	
+	private BufferedImage[] sprites;
+	private int frames = 0, maxFrames = 20, index = 0, maxIndex = 1;
 
 	public Enemy(int x, int y, int width, int height, BufferedImage sprite) {
-		super(x, y, width, height, sprite);
+		super(x, y, width, height, null);
+		sprites = new BufferedImage[2];
+		sprites[0] = Game.spritesheet.getSprite(96, 16, 16, 16);
+		sprites[1] = Game.spritesheet.getSprite(96+16, 16, 16, 16);
 	}
 	
 	public void tick() {
@@ -33,6 +39,15 @@ public class Enemy extends Entity {
 		} else if((int)y > Game.player.getY() && World.isFree(this.getX(), (int)(y-spd))
 				&& !isColliding(this.getX(), (int)(y-spd))) {
 			y -= spd;
+		}
+		
+		frames++;
+		if(frames > maxFrames) {
+			frames = 0;
+			index++;
+			if(index > maxIndex) {
+				index = 0;
+			}
 		}
 	}
 	
@@ -53,9 +68,10 @@ public class Enemy extends Entity {
 	}
 	
 	public void render(Graphics g) {
-		super.render(g);
-		g.fillRect(this.getX() - Camera.x + maskx, this.getY() - Camera.y + masky, maskw, maskh);
-		g.setColor(Color.blue);
+		g.drawImage(sprites[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
+
+		//g.fillRect(this.getX() - Camera.x + maskx, this.getY() - Camera.y + masky, maskw, maskh);
+		//g.setColor(Color.blue);
 	}
 
 }
